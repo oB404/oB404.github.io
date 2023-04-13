@@ -61,7 +61,7 @@
 
 
                 if (!print.rtc_status) {
-                    document.getElementById('rtc_status').innerHTML = 'WebRTC Leak! 我可以探测到你的真实IP，即使你开着全局代理！';
+                    document.getElementById('rtc_status').innerHTML = '<p style="color: crimson">WebRTC Leak! 我可以探测到你的真实IP，即使你开着全局代理！</p>';
                     print.rtc_status = true;
                 }
             }
