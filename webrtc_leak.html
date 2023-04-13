@@ -7,10 +7,12 @@
 <body>
 
 
-<div id="rtc_status" style="margin-bottom: 10px;">WebRTC Safe!</div>
+
 
 
 <div id="req_ip" style="margin-bottom: 10px;"></div>
+
+<div id="rtc_status" style="margin-bottom: 10px;">WebRTC Safe! 安全，无法探测到上网真实IP或没有使用代理上网。</div>
 
 <div id="stun4.l.google.com"></div>
 <div id="stun.voippro.com"></div>
@@ -49,7 +51,7 @@
                     .then(data => {
                         const regionName = data.adcode.o;
                         //console.log(location);
-                        div.textContent = `real ip: ${address} (${regionName}) - ${id}`;
+                        div.textContent = `${address} (${regionName}) - ${id}`;
                         const parent = window.document.getElementById(id);
                         if (parent.textContent === 'null') {
                             parent.textContent = "";
@@ -61,7 +63,7 @@
 
 
                 if (!print.rtc_status) {
-                    document.getElementById('rtc_status').innerHTML = '<p style="color: crimson">WebRTC Leak! 我可以探测到你的真实IP，即使你开着全局代理！</p>';
+                    document.getElementById('rtc_status').innerHTML = '<p style="color: crimson">WebRTC Leak! 探测到的真实上网IP信息：</p>';
                     print.rtc_status = true;
                 }
             }
