@@ -1,7 +1,6 @@
 <html>
 <head>
     <title>WebRTC Leak Test</title>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 </head>
 
@@ -19,17 +18,18 @@
 
 
 <script>
+
     fetch('https://api.ipify.org/?format=json')
         .then(response => response.json())
         .then(data => {
             const r_ip = data.ip;
             document.getElementById('req_ip').textContent = 'request ip: ' + r_ip;
-            fetch(`http://ip-api.com/json/${r_ip}?lang=en`)
+            fetch(`https://api.vore.top/api/IPdata?ip=${r_ip}`)
                 .then(response => response.json())
                 .then(data => {
-                    const regionName = data.country + ' '  + data.regionName + ' ' + data.city;
+                    const regionName = data.adcode.o;
                     //console.log(location);
-                    document.getElementById('req_ip').textContent = `request ip: ${r_ip}(${regionName})`
+                    document.getElementById('req_ip').textContent = `request ip: ${r_ip} (${regionName})`
                 })
                 .catch(error => console.error(error));
         })
@@ -44,16 +44,20 @@
                 ips[id]['push'](address);
                 const div = window["document"]['createElement']("div");
 
-                fetch(`http://ip-api.com/json/${address}?lang=en`)
-                .then(response => response.json())
-                .then(data => {
-                    const regionName = data.country + ' '  + data.regionName + ' ' + data.city;
-                    //console.log(location);
-                div['textContent'] = `real ip: ${address}(${regionName}) - ${id}`;
-                const parent = window["document"]['getElementById'](id);
-                "null" === parent['textContent'] && (parent['textContent'] = ""), parent['appendChild'](div), console.log(address)
-                })
-                .catch(error => console.error(error));
+                fetch(`https://api.vore.top/api/IPdata?ip=${address}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const regionName = data.adcode.o;
+                        //console.log(location);
+                        div.textContent = `real ip: ${address} (${regionName}) - ${id}`;
+                        const parent = window.document.getElementById(id);
+                        if (parent.textContent === 'null') {
+                            parent.textContent = "";
+                        }
+                        parent.appendChild(div);
+                        console.log(address);
+                    })
+                    .catch(error => console.error(error));
 
 
                 if (!print.rtc_status) {
