@@ -4,7 +4,7 @@
   <title>WebRTC Leak Test</title>
 </head>
 <body>
-  <div>Request Source IP: <span id="ip"></span></div>
+  <div>Request IP: <span id="ip"></span></div>
   <div id="rtc"></div>
   <script>
     const RTCPeerConnection =
@@ -19,7 +19,11 @@
       .then(data => {
         const ip = data.ip;
         document.getElementById('ip').textContent = ip;
-        append(ip);
+        if (ip !== '65.15.220.7') {
+          append('WebRTC Safe!');
+        } else {
+          append('WebRTC Leak!');
+        }
       })
       .catch(error => console.error(error));
 
@@ -27,11 +31,7 @@
       const address = (/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/ ['exec'](str) || [])[1];
       if (ips[id] = ips[id] || [], address && -1 === ips[id]['indexOf'](address)) {
         ips[id]['push'](address);
-        const div = window["document"]['createElement']("div");
-        div['textContent'] = address;
-        const parent = window["document"]['getElementById'](id);
-        "null" === parent['textContent'] && (parent['textContent'] = ""), parent['appendChild'](div);
-        append(address);
+        append(`RTC得到的真实IP - ${address}`);
       }
     }
 
@@ -56,7 +56,7 @@
         }, 1e3)
         append(`WebRTC Leak: ${service}`);
       } else {
-        append("WebRTC Safe");
+        append("WebRTC Safe!");
       }
     }
 
