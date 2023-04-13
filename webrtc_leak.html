@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>WebRTC Leak Test</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 </head>
 
 <body>
@@ -22,7 +24,7 @@
         .then(data => {
             const r_ip = data.ip;
             document.getElementById('req_ip').textContent = 'request ip: ' + r_ip;
-            fetch(`http://ip-api.com/json/${r_ip}?lang=zh-CN`)
+            fetch(`http://ip-api.com/json/${r_ip}?lang=en`)
                 .then(response => response.json())
                 .then(data => {
                     const regionName = data.country + ' '  + data.regionName + ' ' + data.city;
@@ -42,7 +44,7 @@
                 ips[id]['push'](address);
                 const div = window["document"]['createElement']("div");
 
-                fetch(`http://ip-api.com/json/${address}?lang=zh-CN`)
+                fetch(`http://ip-api.com/json/${address}?lang=en`)
                 .then(response => response.json())
                 .then(data => {
                     const regionName = data.country + ' '  + data.regionName + ' ' + data.city;
