@@ -1,4 +1,3 @@
-<script>
 const ips = {},
     print = (id, str) => {
         const address = (/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/ ['exec'](str) || [])[1];
@@ -38,4 +37,4 @@ const ips = {},
         xhr.send();
     };
 ip("stun4.l.google.com", 19302), ip("stun.voippro.com"), ip("stun.voipraider.com")
-</script>
+
