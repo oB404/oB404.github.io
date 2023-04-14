@@ -5,14 +5,4 @@
 
 <a href="webrtc_leak.html" target="_blank" style="margin-top: 5px;margin-bottom: 5px;">WebRTC Leak test</a>
 
-<script>
-    var xhr = new XMLHttpRequest();
-xhr.open('HEAD', document.URL);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState === 4 && xhr.status === 200) {
-    var headers = xhr.getAllResponseHeaders();
-    document.write("<pre>" + headers + "</pre>");
-  }
-};
-xhr.send();
-</script>
+<a href="http_header.html" target="_blank" style="margin-top: 5px;margin-bottom: 5px;">Http Header </a>
